@@ -1,0 +1,23 @@
+{
+  "name": "pkg-xml-bkend",
+  "version": "1.0.0",
+  "description": "Serves as backend for Package XML generator of Salesforce, it will run the SF CLI in the SF project & extract all the mdt cmps in the org",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aditya-pandita/pkg-xml-bkend.git"
+  },
+  "author": "Aditya Pandita",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aditya-pandita/pkg-xml-bkend/issues"
+  },
+  "homepage": "https://github.com/aditya-pandita/pkg-xml-bkend#readme",
+  "dependencies": {
+    "@salesforce/cli": "^2.35.6",
+    "express": "^4.19.2"
+  }
+}
