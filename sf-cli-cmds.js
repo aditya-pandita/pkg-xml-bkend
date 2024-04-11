@@ -19,6 +19,7 @@ async function invokeCmdSequence(auth_token, instance_url) {
     const platform = os.platform();
     let envVariableInitCmd = 'export';
     let envVariableRevokeCmd = 'unset SF_ACCESS_TOKEN';
+    let envDelCmd = 'del';
 
     if (platform === 'darwin') {/** Mac OS */
 
@@ -29,13 +30,13 @@ async function invokeCmdSequence(auth_token, instance_url) {
 
         envVariableInitCmd = 'set';
         envVariableRevokeCmd = 'set SF_ACCESS_TOKEN=';
-
+        envDelCmd = 'del';
     }
     else if (platform === 'linux') {/** Linux */
 
         envVariableInitCmd = 'export';
         envVariableRevokeCmd = 'unset SF_ACCESS_TOKEN';
-
+        envDelCmd = 'rm';
     }
     else {
         console.log('Unknown OS');
@@ -75,7 +76,7 @@ async function invokeCmdSequence(auth_token, instance_url) {
         const filePath = './sf-project/package.xml';
         // Check if the file exists
         if (fs.existsSync(filePath)) {
-            const deletePkgXMlFile = 'del package.xml';
+            const deletePkgXMlFile = envDelCmd + ' package.xml';
             await execute(`cd ${'./sf-project'} && ${deletePkgXMlFile}`);
         }
 
