@@ -25,6 +25,7 @@ async function invokeCmdSequence(auth_token, instance_url) {
 
         envVariableInitCmd = 'export';
         envVariableRevokeCmd = 'unset SF_ACCESS_TOKEN=';
+        envDelCmd = 'rm';
     }
     else if (platform === 'win32') {/** Windows */
 
