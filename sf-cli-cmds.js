@@ -95,8 +95,17 @@ async function invokeCmdSequence(auth_token, instance_url) {
              * 4. Run the cmd to generate the orgs whle package.xml fiel with the help of "sf" npm
              */
             console.log(`** Start: Retrieving Package.xml`);
-            const genPkgXml = 'sf project generate manifest --from-org orgAlias';
-            await execute(`cd ${'./sf-project'} && ${genPkgXml}`);
+            if (platform === 'linux') {/** Linux */
+
+                execute('cd sf-project');
+                const genPkgXml = 'sf project generate manifest --from-org orgAlias';
+                await execute(genPkgXml);
+            }
+            else {
+
+                const genPkgXml = 'sf project generate manifest --from-org orgAlias';
+                await execute(`cd ${'./sf-project'} && ${genPkgXml}`);
+            }
             console.log(`** Finish: Retrieving Package.xml file`);
 
             console.log(`Finished execution`);
