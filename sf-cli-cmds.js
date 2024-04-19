@@ -99,7 +99,7 @@ async function invokeCmdSequence(auth_token, instance_url) {
 
                 execute('cd sf-project');
                 const genPkgXml = 'sf project generate manifest --from-org orgAlias';
-                await execute(genPkgXml);
+                await execute(`cd ${'/sf-project'} && ${genPkgXml}`);
             }
             else {
 
