@@ -97,9 +97,9 @@ async function invokeCmdSequence(auth_token, instance_url) {
             console.log(`** Start: Retrieving Package.xml`);
             if (platform === 'linux') {/** Linux */
 
-                execute('cd sf-project');
+                await execute('cd sf-project');
                 const genPkgXml = 'sf project generate manifest --from-org orgAlias';
-                await execute(`cd ${'sf-project'} && ${genPkgXml}`);
+                await execute(`cd ${'/sf-project'} && ${genPkgXml}`);
             }
             else {
 
