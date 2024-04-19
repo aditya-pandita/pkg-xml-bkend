@@ -41,8 +41,10 @@ async function invokeCmdSequence(auth_token, instance_url) {
             envDelCmd = 'rm';
         }
         else {
-            console.log('Unknown OS');
+            console.log('** Platform :           ', platform);
         }
+
+        console.log('Unknown OS');
 
         if(auth_token && instance_url) {
             execute('echo $SF_ACCESS_TOKEN');
