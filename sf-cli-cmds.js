@@ -44,7 +44,7 @@ async function invokeCmdSequence(auth_token, instance_url) {
             console.log('** Platform :           ', platform);
         }
 
-        console.log('Unknown OS');
+        console.log('** Platform :           ', platform);
 
         if(auth_token && instance_url) {
             execute('echo $SF_ACCESS_TOKEN');
