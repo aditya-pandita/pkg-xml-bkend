@@ -89,22 +89,35 @@ async function invokeCmdSequence(auth_token, instance_url) {
                 const deletePkgXMlFile = envDelCmd + ' package.xml';
                 await execute(`cd ${'./sf-project'} && ${deletePkgXMlFile}`);
             }
+            else {
+                console.log("* File doesnt exist *");
+            }
             console.log(`** Finish: Delete existing Package.xml file`);
 
             /**
              * 4. Run the cmd to generate the orgs whle package.xml fiel with the help of "sf" npm
              */
             console.log(`** Start: Retrieving Package.xml`);
-            if (platform === 'linux') {/** Linux */
+            // if (platform === 'linux') {/** Linux */
 
-                await execute('cd sf-project');
-                const genPkgXml = 'sf project generate manifest --from-org orgAlias';
-                await execute(`cd ${'/sf-project'} && ${genPkgXml}`);
+            //     await execute('cd sf-project');
+            //     const genPkgXml = 'sf project generate manifest --from-org orgAlias';
+            //     await execute(`cd ${'/sf-project'} && ${genPkgXml}`);
+            // }
+            // else {
+
+            //     const genPkgXml = 'sf project generate manifest --from-org orgAlias';
+            //     await execute(`cd ${'./sf-project'} && ${genPkgXml}`);
+            // }
+            if (platform === "linux") {
+                /** Linux */
+                //    execute("cd sf-project");
+                const genPkgXml = "sf project generate manifest --from-org orgAlias";
+                await execute(`cd ${"./sf-project"} && ${genPkgXml}`);
             }
             else {
-
-                const genPkgXml = 'sf project generate manifest --from-org orgAlias';
-                await execute(`cd ${'./sf-project'} && ${genPkgXml}`);
+                const genPkgXml = "sf project generate manifest --from-org orgAlias";
+                await execute(`cd ${"./sf-project"} && ${genPkgXml}`);
             }
             console.log(`** Finish: Retrieving Package.xml file`);
 
