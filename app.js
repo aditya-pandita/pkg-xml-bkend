@@ -48,6 +48,7 @@ app.use(
             else {
 
                 process.env.orgId = orgId;
+                const filePath = './sf-project/package.xml';
 
                 if (!fs.existsSync(filePath)) {
                     return res.status(404).json({ error: 'File not found' });
