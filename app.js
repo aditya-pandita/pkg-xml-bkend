@@ -15,6 +15,10 @@ app.use(
 
         console.log('** req.query.auth_token', req.query.auth_token);
         console.log('** req.query.instance_url', req.query.instance_url);
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
+
         if(req.query && req.query.auth_token && req.query.instance_url) {
 
 
