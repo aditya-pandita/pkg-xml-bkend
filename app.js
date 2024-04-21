@@ -21,26 +21,48 @@ app.use(
 
         if(req.query && req.query.auth_token && req.query.instance_url) {
 
+            let authParams = req.query.auth_token.split('!');
+            let orgId = authParams[0];
 
+            if(!orgId && process.env.orgId != orgId) {
 
-            sfcli.invokeCmdSequence(req.query.auth_token, req.query.instance_url).then(
-                () => {
-                    const filePath = './sf-project/package.xml';
-                    // Check if the file exists
-                    if (!fs.existsSync(filePath)) {
-                        return res.status(404).json({ error: 'File not found' });
-                    }
-                    else {
+                sfcli.invokeCmdSequence(req.query.auth_token, req.query.instance_url).then(
+                    () => {
+                        const filePath = './sf-project/package.xml';
+                        // Check if the file exists
+                        if (!fs.existsSync(filePath)) {
+                            return res.status(404).json({ error: 'File not found' });
+                        }
+                        else {
 
-                        // Stream the file as response
-                        const fileStream = fs.createReadStream(filePath);
-                        fileStream.pipe(res);
+                            // Stream the file as response
+                            const fileStream = fs.createReadStream(filePath);
+                            fileStream.pipe(res);
 
-                        // res.status(200).json({
+                            // res.status(200).json({
 
-                        // });
-                    }
-                });
+                            // });
+                        }
+                    });
+            }
+            else {
+
+                process.env.orgId = orgId;
+
+                if (!fs.existsSync(filePath)) {
+                    return res.status(404).json({ error: 'File not found' });
+                }
+                else {
+
+                    // Stream the file as response
+                    const fileStream = fs.createReadStream(filePath);
+                    fileStream.pipe(res);
+
+                    // res.status(200).json({
+
+                    // });
+                }
+            }
 
 
         }
